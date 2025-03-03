@@ -1,12 +1,14 @@
 import mongoose from "mongoose";
 import {Keys} from "../../../keys/keys.js";
 import {Logger, LoggerOrigin} from "../../../utils/log.js";
+import {HooksRegistry, HookSymbols} from "../../hooks/registry.js";
 
 // Initialization
 const connection = await mongoose.connect(Keys.mongoUrl);
 
 export const connectDb = () => {
-    return new MongoDB();
+    HooksRegistry.set(HookSymbols.Database, new MongoDB())
+    return connection
 }
 
 // Database
