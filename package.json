@@ -1,10 +1,23 @@
 {
-  "name": "StasuWebsite",
+  "name": "stasuwebsite",
   "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "description": "",
+  "private": true,
   "main": "index.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.11.0"
   },
-  "private": true
+  "devDependencies": {
+    "@types/express": "^5.0.0"
+  },
+
+  "scripts": {
+
+  }
 }
