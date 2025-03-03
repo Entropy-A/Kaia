@@ -1,5 +1,6 @@
 export enum LoggerOrigin {
     SERVER = 'Server',
+    DB = 'Database',
 }
 
 export class Logger {
