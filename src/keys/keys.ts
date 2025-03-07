@@ -1,5 +1,6 @@
 import {getEnvVariable} from "./env.js";
 
 export const Keys = {
-    mongoUrl: getEnvVariable("MONGODB_URL")
+    PORT: parseInt(getEnvVariable("PORT")),
+    mongoUrl: getEnvVariable("MONGODB_URL"),
 }
