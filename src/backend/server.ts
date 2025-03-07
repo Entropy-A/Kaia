@@ -4,7 +4,8 @@ import {connectDb} from "./config/db/index.js";
 import {IStatistic} from "./models/index.js";
 import statisticRouter from "./routes/statistics.js";
 import {Keys} from "../keys/keys.js";
-import {query} from "express-validator";
+import validator, {body, checkSchema, matchedData, query, validationResult} from "express-validator";
+import {IsEmptyOptions} from "express-validator/lib/options.js";
 
 const logger = new Logger(LoggerOrigin.SERVER);
 const app = express();
@@ -47,8 +48,12 @@ app.get("/", (req, res, next) => {
 }, (req, res) => {
     res.send("Hello World!")
 });
-app.get("/api/users", query("filter").isString(), (req, res) => {
-    console.log(req.query);
+
+// Validation, with message after every check -> corrensponding message
+app.get("/api/users", query("filter").isString().notEmpty().withMessage("Cannot be empty").isLength({min: 3, max: 10}).withMessage("length must be between 3 and 10"), (req, res) => {
+    const result = validationResult(req)
+    console.log(result)
+
     const {query: {filter, value}} = req;
     if (filter && value) {
         return res.send(
@@ -59,16 +64,44 @@ app.get("/api/users", query("filter").isString(), (req, res) => {
     }
 })
 
-app.post("/api/users", (req, res) => {
-    console.log(req.body);
-    const {body} = req;
-    const newUser = {
-        id: users.length + 1,
-        ...body
-    };
-    users.push(newUser);
-    return res.status(201).send(newUser);
-})
+const validationSchema = {
+    username: {
+        notEmpty: {
+            errorMessage: "Cannot be empty"
+        },
+        isString: {
+            errorMessage: "Must be a string"
+        },
+        isLength: {
+            options: {min: 5, max: 32},
+            errorMessage: "Length must be between 5 and 32"
+        }
+    }
+}
+
+app.post(
+    "/api/users",
+    checkSchema(validationSchema),
+    // will run an array of middleware (functions)
+    [(rq, res, next) => {console.log("test"); next()}],
+    (req, res) => {
+        const validation = validationResult(req)
+        console.log(validation);
+
+        if (!validation.isEmpty()) {
+            return res.status(400).send({error: validation.array()})
+        }
+
+        const data = matchedData(req)
+
+        const newUser = {
+            id: users.length + 1,
+            ...data
+        };
+        users.push(newUser);
+        return res.status(201).send(newUser);
+    }
+)
 
 app.get("/api/users/:id", resolveUserIndexByID, (req, res) => {
     const { findUserIndex } = req
