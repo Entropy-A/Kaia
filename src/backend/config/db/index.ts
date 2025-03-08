@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import {Keys} from "../../../keys/keys.js";
+import {Keys} from "../keys/keys.js";
 import {Logger, LoggerOrigin} from "../../../utils/log.js";
 import {HooksRegistry, HookSymbols} from "../../hooks/registry.js";
 

@@ -1,10 +1,8 @@
-import express, {NextFunction, Request, Response} from "express"
+import express from "express"
 import {Logger, LoggerOrigin} from "../utils/index.js";
 import {connectDb} from "./config/db/index.js";
-import {IStatistic} from "./models/index.js";
-import statisticRouter from "./routes/statistics.js";
-import {Keys} from "../keys/keys.js";
-import {query} from "express-validator";
+import statisticRouter from "./routes/statistics.routes.js";
+import {Keys} from "./config/index.js";
 
 const logger = new Logger(LoggerOrigin.SERVER);
 const app = express();
