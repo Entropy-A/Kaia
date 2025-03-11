@@ -1,16 +1,12 @@
-import express, {NextFunction, Request, Response} from "express"
+import express from "express"
 import {Logger, LoggerOrigin} from "../utils/index.js";
 import {connectDb} from "./config/db/index.js";
-import {IStatistic} from "./models/index.js";
-import statisticRouter from "./routes/statistics.js";
 import {Keys} from "../keys/keys.js";
-import validator, {body, checkSchema, matchedData, query, validationResult} from "express-validator";
-import {IsEmptyOptions} from "express-validator/lib/options.js";
+import routes from "./routes/index.js";
+import cookieParser from "cookie-parser"
 
 const logger = new Logger(LoggerOrigin.SERVER);
 const app = express();
-
-app.use("/statistics", statisticRouter);
 
 app.listen(Keys.PORT, () => {
     logger.log(`Server started at [http://localhost:${Keys.PORT}]`);
@@ -20,6 +16,8 @@ app.listen(Keys.PORT, () => {
 
 // TUTORIAL
 app.use(express.json())
+app.use(cookieParser())
+app.use("/api", routes)
 
 export const users = [
     {id: 1, username: "joe", displayName: "Joe"},
@@ -28,19 +26,4 @@ export const users = [
     {id: 4, username: "xxanus", displayName: "Nibba"},
     {id: 5, username: "anton", displayName: "Anton"},
     {id: 6, username: "moloch", displayName: "Satan"},
-
 ]
-
-app.get("/", (req, res, next) => {
-    console.log("base url");
-    next();
-}, (req, res) => {
-    res.send("Hello World!")
-});
-
-// Validation, with message after every check -> corrensponding message
-
-import usersRouter from "./routes/tutorial.js"
-import {resolveUserIndexByID} from "../utils/middleware.js";
-
-app.use(usersRouter); //ROUTER using

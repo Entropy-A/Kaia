@@ -6,7 +6,7 @@ import {resolveUserIndexByID} from "../../utils/middleware.js";
 const router = Router();
 
 router.get(
-    "/api/users",
+    "/",
     query("filter")
         .isString()
         .notEmpty().withMessage("Cannot be empty")
@@ -42,7 +42,7 @@ const validationSchema = {
 }
 
 router.post(
-    "/api/users",
+    "/",
     checkSchema(validationSchema),
     // will run an array of middleware (functions)
     [(rq, res, next) => {console.log("test"); next()}],
@@ -65,7 +65,7 @@ router.post(
     }
 )
 
-router.get("/api/users/:id", resolveUserIndexByID, (req, res) => {
+router.get("/:id", resolveUserIndexByID, (req, res) => {
     const { findUserIndex } = req
 
     const user = users[findUserIndex];
@@ -74,7 +74,7 @@ router.get("/api/users/:id", resolveUserIndexByID, (req, res) => {
     return res.status(200).send(user);
 })
 
-router.put("/api/users/:id", resolveUserIndexByID, (req, res) => {
+router.put("/:id", resolveUserIndexByID, (req, res) => {
     const {body, findUserIndex} = req;
 
     users[findUserIndex] = {id: users[findUserIndex].id, ...body};
@@ -82,14 +82,14 @@ router.put("/api/users/:id", resolveUserIndexByID, (req, res) => {
     return res.sendStatus(200)
 })
 
-router.patch("/api/users/:id", resolveUserIndexByID, (req, res) => {
+router.patch("/:id", resolveUserIndexByID, (req, res) => {
     const {body, findUserIndex} = req;
 
     users[findUserIndex] = {...users[findUserIndex], ...body}
     return res.sendStatus(200)
 })
 
-router.delete("/api/users/:id", resolveUserIndexByID, (req, res) => {
+router.delete("/:id", resolveUserIndexByID, (req, res) => {
     const {body, findUserIndex} = req
     users.splice(findUserIndex, 1);
 })
