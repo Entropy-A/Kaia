@@ -1,4 +1,4 @@
-import {users} from "../backend/server.js";
+import {users} from "../server.js";
 
 export const resolveUserIndexByID = (req, res, next) => {
     const parsedId = parseInt(req.params.id);

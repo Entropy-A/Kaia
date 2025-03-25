@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import {Keys} from "../../../keys/keys.js";
-import {Logger, LoggerOrigin} from "../../../utils/log.js";
+import {Keys} from "../keys/keys.js";
+import {Logger, LoggerOrigin} from "../../utils/log.js";
 import {HooksRegistry, HookSymbols} from "../../hooks/registry.js";
 
 // Initialization
@@ -14,13 +14,13 @@ export const connectDb = () => {
 // Database
 export class MongoDB {
     public logger = new Logger(LoggerOrigin.DB);
-    public db: typeof connection;
+    public mongoose: typeof connection;
 
     constructor() {
         try {
-            this.db = connection;
+            this.mongoose = connection;
         } catch (e) {
-            this.logger.error(e as string);
+            this.logger.error(e);
             process.exit(1);
         }
     }
