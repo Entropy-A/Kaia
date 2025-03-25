@@ -1,8 +1,8 @@
 import {Router} from "express";
-import statisticsRoutes from "./statistics.routes.js";
+import statisticsRouter from "./statistics.routes.js";
 
 const router = Router();
 
-router.use("/statistics", statisticsRoutes);
+router.use("/statistics", statisticsRouter);
 
 export default router;
