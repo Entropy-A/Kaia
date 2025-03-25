@@ -14,11 +14,11 @@ export const connectDb = () => {
 // Database
 export class MongoDB {
     public logger = new Logger(LoggerOrigin.DB);
-    public db: typeof connection;
+    public mongoose: typeof connection;
 
     constructor() {
         try {
-            this.db = connection;
+            this.mongoose = connection;
         } catch (e) {
             this.logger.error(e as string);
             process.exit(1);
