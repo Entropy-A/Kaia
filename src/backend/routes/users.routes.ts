@@ -46,8 +46,8 @@ router.post(
     checkSchema(validationSchema),
     // will run an array of middleware (functions)
     [(rq, res, next) => {console.log("test"); next()}],
-    (req, res) => {
-        const validation = validationResult(req)
+    (request, response) => {
+        /*const validation = validationResult(req)
         console.log(validation);
 
         if (!validation.isEmpty()) {
@@ -61,7 +61,9 @@ router.post(
             ...data
         };
         users.push(newUser);
-        return res.status(201).send(newUser);
+        return res.status(201).send(newUser);*/
+
+        const {body} = request;
     }
 )
 
