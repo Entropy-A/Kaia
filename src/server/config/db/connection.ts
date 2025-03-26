@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 import {Keys} from "../keys/keys.js";
-import {Logger, LoggerOrigin} from "../../../utils/log.js";
+import {Logger, LoggerOrigin} from "$/utils/index.js";
 import {HooksRegistry, HookSymbols} from "../../hooks/registry.js";
 
 // Initialization
-const connection = await mongoose.connect(Keys.mongoUrl);
+const connection = await mongoose.connect(Keys.MONGODB_URL);
 
 export const connectDb = () => {
     HooksRegistry.set(HookSymbols.Database, new MongoDB())

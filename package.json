@@ -9,18 +9,25 @@
   "private": true,
   "main": "index.ts",
   "dependencies": {
+    "cookie-parser": "^1.4.7",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "express-validator": "^7.2.1",
-    "mongoose": "^8.11.0"
+    "express-mongo-sanitize": "^2.2.0",
+    "express-session": "^1.18.1",
+    "helmet": "^8.1.0",
+    "mongoose": "^8.11.0",
+    "passport": "^0.7.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
-    "concurrently": "^9.1.2",
+    "@types/node": "^22.13.13",
     "nodemon": "^3.1.9",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   },
   "scripts": {
-    "dev": "concurrently \"tsc --watch\" \"nodemon dist/backend/server.js\""
+    "dev": "nodemon --watch src --ext ts,tsx --exec \"tsc --noEmit && tsx src/server/server.ts\""
   }
 }

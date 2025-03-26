@@ -3,8 +3,8 @@ export type Failure = {success: false, error: unknown}
 
 export type Result<ReturnType> = Success<ReturnType> | Failure
 
-export function success<ReturnType>(result: ReturnType) {
-    return {success: true as const, result};
+export function success<ReturnType>(data: ReturnType) {
+    return {success: true as const, result: data};
 }
 
 export function fail(error: unknown): Failure {
