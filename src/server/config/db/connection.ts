@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import {Keys} from "../keys/keys.js";
-import {Logger, LoggerOrigin} from "$/utils/index.js";
-import {HooksRegistry, HookSymbols} from "../../hooks/registry.js";
+import {Logger, LoggerOrigin} from "$/server/core/utils/index.js";
+import {HooksRegistry, HookSymbols} from "$/server/hooks/registry.js";
 
 // Initialization
 const connection = await mongoose.connect(Keys.MONGODB_URL);

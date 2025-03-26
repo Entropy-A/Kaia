@@ -6,16 +6,23 @@ enum ErrorCodes {
     InternalServerError = 500,
 }
 
-export default class ApiError extends Error {
+export class ApiError extends Error {
     constructor(
         public statusCode: ErrorCodes,
-        message: string,
+        public message: string,
+        public details?: string,
         public isCritical = false,
-        stack = ""
+        public stack = ""
     ) {
         super(message);
         Object.setPrototypeOf(this, new.target.prototype);
         if (stack) this.stack = stack;
         else Error.captureStackTrace(this, this.constructor);
+    }
+}
+
+export class ValidationError extends ApiError {
+    constructor(details?: string) {
+        super(400, "Validation failed", details);
     }
 }

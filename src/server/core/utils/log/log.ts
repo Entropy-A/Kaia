@@ -4,20 +4,17 @@ export enum LoggerOrigin {
 }
 
 export class Logger {
-    #origin: LoggerOrigin;
-    #location?: string;
+    readonly #origin: LoggerOrigin;
 
-    constructor(origin: LoggerOrigin, location?: string) {
+    constructor(origin: LoggerOrigin) {
         this.#origin = origin;
-        this.#location = location;
     }
 
-    private formatMessage(scope: string, message: unknown[], location?: string): string {
-        location = location ?? this.#location;
-        return `[${scope}] [${this.#origin}${location ? ` : ${location}` : ""}]  >> ${message}`;
+    private formatMessage(scope: string, message: unknown[], location?: string[]): string {
+        return `[${scope}] [${this.#origin}${location?.length ? ` : ${location.join(" : ")}` : ""}]  >> ${message}`;
     }
 
-    location(location: string) {
+    location(...location: string[]) {
         return {
             log: (...message: unknown[]) => {return console.log(this.formatMessage("Log", message, location));},
             info: (...message: unknown[]) => {return console.info(this.formatMessage("Info", message, location));},
