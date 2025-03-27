@@ -1,5 +1,5 @@
 import {HooksRegistry, HookSymbols} from "./registry.js";
-import {MongoDB} from "../config/db/connection.js";
+import {MongoDB} from "../../config/db/connection.js";
 
 export const useDb = () => {
     const db = HooksRegistry.get(HookSymbols.Database)

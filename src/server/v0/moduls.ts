@@ -1,15 +1,15 @@
 import {Router} from "express";
 
-interface Route {
+export interface RouteModul {
     path: string;
     router: Router;
     init: () => Promise<void>;
 }
 
-class RoutesRegistry {
-    #routes: Route[] = [];
+class RouteModulRegistry {
+    #routes: RouteModul[] = [];
 
-    async loadRoutes(modules: Route[]) {
+    async loadRoutes(modules: RouteModul[]) {
         const router = Router();
         for (const module of modules) {
             this.#routes.push(module);
@@ -28,4 +28,4 @@ class RoutesRegistry {
     }
 }
 
-export default new RoutesRegistry();
+export default new RouteModulRegistry();

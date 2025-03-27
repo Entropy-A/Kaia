@@ -9,13 +9,12 @@ enum ErrorCodes {
 export class ApiError extends Error {
     constructor(
         public statusCode: ErrorCodes,
-        public message: string,
+        message: string,
         public details?: string,
         public isCritical = false,
-        public stack = ""
+        stack = ""
     ) {
         super(message);
-        Object.setPrototypeOf(this, new.target.prototype);
         if (stack) this.stack = stack;
         else Error.captureStackTrace(this, this.constructor);
     }

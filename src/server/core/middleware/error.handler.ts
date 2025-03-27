@@ -3,7 +3,7 @@ import {ApiError, ValidationError} from "$/server/core/errors/api.error.js";
 import {Error, MongooseError} from "mongoose";
 import {ZodError} from "zod";
 import {ApiLogger} from "$/server/app.js";
-import {ApiErrorResponse} from "$/server/types/error.type.js";
+import {ApiErrorResponse} from "$/server/core/errors/errorResponse.dto.js";
 export const errorHandler = (
     err: Error | ApiError,
     req: Request,
@@ -23,12 +23,16 @@ export const errorHandler = (
             break;
 
         default:
-            error = new ApiError(500, "Internal Server Error", undefined, true, err.stack);
+            error = new ApiError(500, "Internal Server Error", err.message, true, err.stack);
             break;
     }
 
-    ApiLogger.location(req.method, req.path).error(error)
-    const {statusCode, message, details} = error;
+    const {statusCode, message, details} = error
+    ApiLogger.location(req.path, req.method).error(
+        statusCode,
+        message,
+        details
+    )
 
     res.status(statusCode).json({
         error: {

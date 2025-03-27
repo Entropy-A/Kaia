@@ -1,8 +1,8 @@
 import express from "express"
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
-import RoutesRegistry from "$/server/v0/routes.registry.js";
-import usersRoute from "$/server/v0/users/users.route.js";
+import RoutesRegistry from "$/server/tutorial0/moduls.js";
+import usersRoute from "$/server/tutorial0/users/users.routes.js";
 import {errorHandler} from "$/server/core/middleware/error.handler.js";
 import {Logger, LoggerOrigin} from "$/server/core/utils/index.js";
 
@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }))
 const {path, router} = await RoutesRegistry.loadRoutes([
     usersRoute,
 ])
+ApiLogger.log(`Loaded ${path} routes`)
 
 app.use(path, router);
 app.use(errorHandler)

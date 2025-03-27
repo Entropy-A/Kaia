@@ -11,7 +11,7 @@ export class Logger {
     }
 
     private formatMessage(scope: string, message: unknown[], location?: string[]): string {
-        return `[${scope}] [${this.#origin}${location?.length ? ` : ${location.join(" : ")}` : ""}]  >> ${message}`;
+        return `[${scope}] [${this.#origin}${location?.length ? ` : ${location.join(" : ")}` : ""}] >> ${message.join(" | ")}`;
     }
 
     location(...location: string[]) {
