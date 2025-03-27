@@ -18,7 +18,7 @@ class RouteModulRegistry {
         }
 
         return {
-            path: "/api/tutorial0",
+            path: "/api/t0",
             router,
         }
     }
