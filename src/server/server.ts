@@ -1,4 +1,4 @@
-import {connectDb} from "./config/db/connection.js";
+import connectDb from "./config/db/connection.js";
 import {Keys} from "./config/index.js";
 import app, {ApiLogger} from "./app.js";
 
@@ -12,8 +12,7 @@ process.on('uncaughtException', (error: Error) => {
     // Consider restarting the process in production
 });
 
-app.listen(Keys.PORT, () => {
+app.listen(Keys.PORT, async () => {
+    await connectDb();
     ApiLogger.log(`Server started at [http://localhost:${Keys.PORT}]`);
-    const connection = connectDb();
-    ApiLogger.log(`MongoDB connected to [${connection.connection.host}]`);
 })

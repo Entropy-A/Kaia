@@ -12,7 +12,7 @@ router.route("/:id/:age")
     })
 
 const RouteModul: RouteModul = {
-    path: "/users",
+    path: "/products",
     router,
     async init() {
         ApiLogger.log("Initialized User Endpoint");

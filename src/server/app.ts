@@ -2,7 +2,7 @@ import express from "express"
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
 import RoutesRegistry from "$/server/tutorial0ProductBlog/moduls.js";
-import usersRoute from "$/server/tutorial0ProductBlog/users/users.routes.js";
+import usersRoute from "$/server/tutorial0ProductBlog/products/products.routes.js";
 import {errorHandler} from "$/server/core/middleware/error.handler.js";
 import {Logger, LoggerOrigin} from "$/server/core/utils/index.js";
 
