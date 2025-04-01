@@ -12,7 +12,7 @@ export class ApiError extends Error {
         message: string,
         public details?: string,
         public isCritical = false,
-        stack = ""
+        stack = "",
     ) {
         super(message);
         if (stack) this.stack = stack;
@@ -23,5 +23,11 @@ export class ApiError extends Error {
 export class ValidationError extends ApiError {
     constructor(details?: string) {
         super(400, "Validation failed", details);
+    }
+}
+
+export class NotFoundError extends ApiError {
+    constructor(details?: string) {
+        super(404, "Not Found", details);
     }
 }

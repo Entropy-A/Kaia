@@ -1,1 +1,1 @@
-export * from "./useDb.js"
+export * from "./useDb.js";

@@ -1,10 +1,5 @@
-import {Router} from "express";
-
-export interface RouteModul {
-    path: string;
-    router: Router;
-    init: () => Promise<void>;
-}
+import { Router } from "express";
+import { RouteModul } from "$/server/v0/moduls.js";
 
 class RouteModulRegistry {
     #routes: RouteModul[] = [];
@@ -13,14 +8,15 @@ class RouteModulRegistry {
         const router = Router();
         for (const module of modules) {
             this.#routes.push(module);
+            await module.init();
+
             router.use(module.path, module.router);
-            await module.init()
         }
 
         return {
-            path: "/api/t0",
+            version: "/t1",
             router,
-        }
+        };
     }
 
     get routes() {

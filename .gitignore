@@ -4,3 +4,4 @@ remember.md
 dist
 test
 .env
+eslint.config.js

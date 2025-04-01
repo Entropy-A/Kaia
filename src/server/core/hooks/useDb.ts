@@ -1,9 +1,9 @@
-import {HooksRegistry, HookSymbols} from "./registry.js";
-import {MongoDB} from "../../config/db/connection.js";
+import { HooksRegistry, HookSymbols } from "./registry.js";
+import { MongoHook } from "$/server/config/index.js";
 
 export const useDb = () => {
-    const db = HooksRegistry.get(HookSymbols.Database)
+    const hook = HooksRegistry.get(HookSymbols.Mongo);
 
-    if (db && db instanceof MongoDB) return db
-    else throw Error('Mongoose has not been properly initialized.')
-}
+    if (hook && hook instanceof MongoHook) return hook;
+    else throw Error("Mongoose has not been properly initialized.");
+};
