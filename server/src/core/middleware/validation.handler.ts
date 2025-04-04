@@ -1,4 +1,4 @@
-import { ApiRequest, ApiResponse } from "$/server/core/types/api.core.dto.js";
+import { ApiRequest, ApiResponse } from "$/core/types/api.core.dto.js";
 import { NextFunction } from "express";
 import { ZodSchema } from "zod";
 

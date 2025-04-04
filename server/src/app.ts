@@ -1,11 +1,11 @@
 import express from "express";
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
-import RoutesRegistry from "$/server/tutorial1NotesTakingApp/moduls.js";
-import notesRoute from "$/server/tutorial1NotesTakingApp/notes/notes.routes.js";
-import { errorHandler } from "$/server/core/middleware/error.handler.js";
-import { Logger, LoggerOrigin } from "$/server/core/utils/index.js";
-import notFoundHandler from "$/server/core/middleware/notFound.handler.js";
+import RoutesRegistry from "./tutorial1NotesTakingApp/moduls.js";
+import notesRoute from "./tutorial1NotesTakingApp/notes/notes.routes.js";
+import { errorHandler } from "$/core/middleware/index.js";
+import { Logger, LoggerOrigin } from "./core/utils/index.js";
+import notFoundHandler from "./core/middleware/notFound.handler.js";
 
 export const ApiLogger = new Logger(LoggerOrigin.SERVER);
 

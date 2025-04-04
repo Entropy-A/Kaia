@@ -1,10 +1,10 @@
 import { NextFunction } from "express";
-import { ApiError, ValidationError } from "$/server/core/errors/api.error.js";
+import { ApiError, ValidationError } from "$/core/errors/api.error.js";
 import { Error, MongooseError } from "mongoose";
 import { ZodError } from "zod";
-import { ApiLogger } from "$/server/app.js";
-import { ErrorResponse } from "$/server/core/errors/error.dto.js";
-import { ApiRequest, ApiResponse } from "$/server/core/types/index.js";
+import { ApiLogger } from "$/app.js";
+import { ErrorResponse } from "$/core/errors/error.dto.js";
+import { ApiRequest, ApiResponse } from "$/core/types/index.js";
 export const errorHandler = (
     err: unknown,
     req: ApiRequest,

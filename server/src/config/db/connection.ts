@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Keys } from "../keys/keys.js";
-import { Logger, LoggerOrigin } from "$/server/core/utils/index.js";
-import { HooksRegistry, HookSymbols } from "$/server/core/hooks/registry.js";
+import { Logger, LoggerOrigin } from "$/core/utils/index.js";
+import { HooksRegistry, HookSymbols } from "$/core/hooks/registry.js";
 
 export abstract class MongoHook {
     protected constructor(public logger: Logger, public db: typeof mongoose) {}

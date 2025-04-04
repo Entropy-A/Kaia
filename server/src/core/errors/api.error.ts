@@ -1,4 +1,4 @@
-import { ErrorCodes } from "$/server/core/utils/status.codes/errors.js";
+import { ErrorCodes } from "$/core/utils/status.codes/errors.js";
 
 // TODO: Vielleicht den error type definieren sowie bei Zod ein object generieren mit allen fehlenden feldern
 export class ApiError extends Error {

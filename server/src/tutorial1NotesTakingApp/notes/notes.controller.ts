@@ -1,10 +1,10 @@
-import asyncHandler from "$/server/core/decorators/asyncHandler.decorator.js";
-import { ApiRequest, ApiResponse } from "$/server/core/types/api.core.dto.js";
+import asyncHandler from "$/core/decorators/asyncHandler.decorator.js";
+import { ApiRequest, ApiResponse } from "$/core/types/api.core.dto.js";
 import Note from "./notes.model.js";
-import noteSchema from "$/server/tutorial1NotesTakingApp/notes/notes.types.js";
-import { ExtractParams } from "$/server/core/types/extractParams.type.js";
-import { ApiError, NotFoundError } from "$/server/core/errors/index.js";
-import { NoteRoutes } from "$/server/tutorial1NotesTakingApp/notes/notes.routes.js";
+import noteSchema from "$/tutorial1NotesTakingApp/notes/notes.types.js";
+import { ExtractParams } from "$/core/types/extractParams.type.js";
+import { ApiError, NotFoundError } from "$/core/errors/index.js";
+import { NoteRoutes } from "$/tutorial1NotesTakingApp/notes/notes.routes.js";
 
 class NotesController {
 

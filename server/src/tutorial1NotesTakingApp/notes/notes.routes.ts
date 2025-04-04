@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { ApiLogger } from "$/server/app.js";
-import { RouteModul } from "$/server/v0/moduls.js";
-import NotesController from "$/server/tutorial1NotesTakingApp/notes/notes.controller.js";
-import { validate } from "$/server/core/middleware/validation.handler.js";
-import noteSchema from "$/server/tutorial1NotesTakingApp/notes/notes.types.js";
+import { ApiLogger } from "$/app.js";
+import { RouteModul } from "$/tutorial1NotesTakingApp/moduls.js";
+import NotesController from "$/tutorial1NotesTakingApp/notes/notes.controller.js";
+import { validate } from "$/core/middleware/validation.handler.js";
+import noteSchema from "$/tutorial1NotesTakingApp/notes/notes.types.js";
 
 export enum NoteRoutes {
     root = "/",

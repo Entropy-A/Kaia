@@ -1,7 +1,7 @@
 import { Request } from "express";
 import * as core from "express-serve-static-core";
 import { Response } from "express";
-import { ErrorResponse } from "$/server/core/errors/index.js";
+import { ErrorResponse } from "$/core/errors/index.js";
 
 // Request
 export type ApiRequest<req = unknown, res = unknown, params = core.ParamsDictionary, query = core.Query> = Request<params, ApiResponseData<res>, req, query>

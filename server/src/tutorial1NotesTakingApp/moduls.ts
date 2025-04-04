@@ -1,6 +1,11 @@
 import { Router } from "express";
-import { RouteModul } from "$/server/v0/moduls.js";
-import { ApiLogger } from "$/server/app.js";
+import { ApiLogger } from "$/app.js";
+
+export interface RouteModul {
+    path: string;
+    router: Router;
+    init: () => Promise<void>;
+}
 
 // Version
 const version = "/t1";

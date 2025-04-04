@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { NotFoundError } from "$/server/core/errors/api.error.js";
+import { NotFoundError } from "$/core/errors/api.error.js";
 
 function notFoundHandler(version: string) {
     return (req: Request, res: Response, next: NextFunction) => {
