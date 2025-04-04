@@ -18,7 +18,6 @@ app.use(express.urlencoded({ extended: true }));
 const { version, router } = await RoutesRegistry.loadRoutes([
     notesRoute,
 ]);
-ApiLogger.log(`Loaded ${version} routes`);
 
 app.use("/api" + version, router);
 app.use(notFoundHandler(version));

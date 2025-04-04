@@ -1,2 +1,2 @@
 export * from "./api.error.js";
-export * from "./errorResponse.dto.js";
+export * from "./error.dto.js";

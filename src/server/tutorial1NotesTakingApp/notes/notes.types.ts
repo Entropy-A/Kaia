@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { ApiRequest } from "$/server/core/types/apiRequest.dto.js";
 
 const noteSchema = z.object({
     title: z.string(),
@@ -7,5 +6,4 @@ const noteSchema = z.object({
 });
 
 type noteSchema = z.infer<typeof noteSchema>
-
 export default noteSchema;

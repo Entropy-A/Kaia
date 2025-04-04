@@ -1,16 +1,11 @@
-enum ErrorCodes {
-    BadRequest = 400,
-    Unauthorized = 401,
-    Forbidden = 403,
-    NotFound = 404,
-    InternalServerError = 500,
-}
+import { ErrorCodes } from "$/server/core/utils/status.codes/errors.js";
 
+// TODO: Vielleicht den error type definieren sowie bei Zod ein object generieren mit allen fehlenden feldern
 export class ApiError extends Error {
     constructor(
         public statusCode: ErrorCodes,
         message: string,
-        public details?: string,
+        public details?: string | object,
         public isCritical = false,
         stack = "",
     ) {
@@ -21,8 +16,9 @@ export class ApiError extends Error {
 }
 
 export class ValidationError extends ApiError {
-    constructor(details?: string) {
-        super(400, "Validation failed", details);
+    // TODO
+    constructor(public details?: Record<string, string>) {
+        super(400, "Validation failed");
     }
 }
 

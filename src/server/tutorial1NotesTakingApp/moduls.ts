@@ -1,5 +1,9 @@
 import { Router } from "express";
 import { RouteModul } from "$/server/v0/moduls.js";
+import { ApiLogger } from "$/server/app.js";
+
+// Version
+const version = "/t1";
 
 class RouteModulRegistry {
     #routes: RouteModul[] = [];
@@ -13,8 +17,9 @@ class RouteModulRegistry {
             router.use(module.path, module.router);
         }
 
+        ApiLogger.log(`Loaded ${version} routes`);
         return {
-            version: "/t1",
+            version,
             router,
         };
     }

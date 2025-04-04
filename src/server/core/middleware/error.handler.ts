@@ -1,15 +1,14 @@
-import { Response, Request, NextFunction } from "express";
+import { NextFunction } from "express";
 import { ApiError, ValidationError } from "$/server/core/errors/api.error.js";
 import { Error, MongooseError } from "mongoose";
 import { ZodError } from "zod";
 import { ApiLogger } from "$/server/app.js";
-import { ApiErrorResponse } from "$/server/core/errors/errorResponse.dto.js";
-import { ApiResponse } from "$/server/core/types/apiResponse.dto.js";
-import { ApiRequest } from "$/server/core/types/apiRequest.dto.js";
+import { ErrorResponse } from "$/server/core/errors/error.dto.js";
+import { ApiRequest, ApiResponse } from "$/server/core/types/index.js";
 export const errorHandler = (
     err: unknown,
     req: ApiRequest,
-    res: ApiResponse<undefined>,
+    res: ApiResponse<ErrorResponse>,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     next: NextFunction,
 ) => {
@@ -23,8 +22,12 @@ export const errorHandler = (
         break;
 
     case err instanceof ZodError:
-        error = new ValidationError(err.errors.map(e => `${e.path.join("/")}: ${e.message}`).join("\n"));
+        error = new ValidationError(Object.fromEntries(err.errors.map(e => [e.path, e.message])));
         break;
+
+        // TODO
+        // case err instanceof MongooseError:
+        //     break;
 
     default:
         try {
@@ -37,7 +40,7 @@ export const errorHandler = (
     }
 
     const { statusCode, message, details } = error;
-    ApiLogger.location(req.path, req.method).error(
+    ApiLogger.location(req.method, req.path).error(
         statusCode,
         message,
         details,
